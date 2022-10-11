@@ -4,6 +4,7 @@ import { Book } from "./book.schema";
 import { Model } from "mongoose";
 import { CreateBookDto } from "./dto/create-book.dto";
 import { UpdateBookDto } from "./dto/update-book.dto";
+import {v4} from "uuid"
 
 @Injectable()
 export class BookService {
@@ -20,11 +21,16 @@ export class BookService {
       throw new HttpException('missing image link', 422);
     }
     const book = new this.bookModel(createBookDto);
+    book._id = v4()
+    await book.save()
     return book;
   }
 
-  async findAll() {
-    return await this.bookModel.find();
+  async findAll(name: string) {
+    if(!name){
+      return await this.bookModel.find();
+    }
+    return await this.bookModel.find({title: name})
   }
 
   async findOne(id: string) {
@@ -39,7 +45,6 @@ export class BookService {
     if (!book) {
       return;
     }
-  
     return  ;
   }
 

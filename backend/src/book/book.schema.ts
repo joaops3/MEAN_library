@@ -23,7 +23,7 @@ export class Book {
   title: string
 
   @Prop()
-  user: UserEntity
+  user?: UserEntity
 }
 
 export const BookSchema = SchemaFactory.createForClass(Book)

@@ -1,13 +1,17 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { AuthService } from "./auth.service";
+import { Body, Controller, HttpException, Post } from '@nestjs/common';
+import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService) {}
 
-  @Post("/login")
-  login(@Body() body: any){
-    const user = this.authService.validate(body.email)
-    return this.authService.generateToken(user)
+  @Post('/login')
+  async login(@Body() body: any) {
+    if (!body.email || !body.password) {
+      throw new HttpException('email e senha obrigatorios', 422);
+    }
+    const user = await this.authService.validate(body.email, body.password);
+   
+    return this.authService.generateToken(user);
   }
 }

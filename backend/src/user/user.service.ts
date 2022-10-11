@@ -5,6 +5,7 @@ import { User, UserDocument } from './user.schema';
 import { CreateUserDto } from './userDto/create-user.dto';
 import { UpdateUserDto } from './userDto/update-user.dto';
 import * as bcrypt from "bcrypt"
+import {v4} from "uuid"
 
 @Injectable()
 export class UserService {
@@ -21,8 +22,9 @@ export class UserService {
     const createdUser = new this.userModel(createUserDto);
     let salt =  await bcrypt.genSalt(12)
     let hash = await  bcrypt.hash(createdUser.password, salt )
-   
+    
     createdUser.password = hash
+    createdUser._id = v4()
     await createdUser.save();
     return createdUser;
    
@@ -61,7 +63,13 @@ export class UserService {
     return this.userModel.findByIdAndDelete(id)
   }
 
-  async login(email: string, password: string){
-
+  async comparePassword(password: string, userPassword: string){
+  try{
+    const validation = await  bcrypt.compare(password, userPassword )
+    return validation
+  }catch(e){
+    console.log(e)
+  }
+  
   }
 }
