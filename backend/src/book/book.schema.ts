@@ -1,13 +1,12 @@
 import {Schema, Prop, SchemaFactory} from "@nestjs/mongoose"
-import { Document } from "mongoose"
-import { UserEntity } from "src/user/user.entity"
+import mongoose, { Document, Types } from "mongoose"
 
 export type BookDocument = Book & Document
 
 @Schema()
 export class Book {
 
-  @Prop()
+  @Prop({required: true})
   _id: string
 
   @Prop()
@@ -22,8 +21,6 @@ export class Book {
   @Prop()
   title: string
 
-  @Prop()
-  user?: UserEntity
 }
 
 export const BookSchema = SchemaFactory.createForClass(Book)
