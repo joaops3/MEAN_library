@@ -1,18 +1,25 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from "@nestjs/mongoose";
-import { UserController } from './user/user.controller';
-import { UserService } from './user/user.service';
+import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
-import { BookController } from './book/book.controller';
-import { BookService } from './book/book.service';
 import { BookModule } from './book/book.module';
-import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
-
+import { MulterModule } from '@nestjs/platform-express';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { ConfigModule } from '@nestjs/config';
+import { join } from 'path';
 @Module({
-  imports: [MongooseModule.forRoot('mongodb://localhost:27017/book_store'), UserModule, BookModule, AuthModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    MongooseModule.forRoot(process.env.DB_URL),
+    ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', 'uploads') }),
+    UserModule,
+    BookModule,
+    AuthModule,
+    MulterModule.register({ dest: './uploads' }),
+  ],
   controllers: [],
   providers: [],
-
 })
 export class AppModule {}

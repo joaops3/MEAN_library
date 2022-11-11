@@ -29,13 +29,13 @@ export class BookService {
 
   async findAll(name: string) {
     if(!name){
-      return await this.bookModel.find().populate("book");
+      return await this.bookModel.find()
     }
-    return await this.bookModel.find({title: name}).populate("book")
+    return await this.bookModel.find({title: name})
   }
 
   async findOne(id: string) {
-    return await this.bookModel.findById(id).populate("book").exec();
+    return await this.bookModel.findById(id).exec();
   }
 
   async update(id: string, updateBookDto: UpdateBookDto): Promise<Book> {

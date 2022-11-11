@@ -1,14 +1,36 @@
-import { Controller, Post, Body, Get, Param, Query, Put } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Query,
+  Put,
+  Delete,
+  UseInterceptors,
+  UploadedFile,
+  BadRequestException,
+} from '@nestjs/common';
 import { BookService } from "./book.service";
 import { CreateBookDto } from "./dto/create-book.dto";
 import { UpdateBookDto } from "./dto/update-book.dto";
-
+import { FileInterceptor } from '@nestjs/platform-express';
+import { storage, fileFilter } from "../config/multer";
 @Controller('book')
 export class BookController {
   constructor(private readonly bookService: BookService) {}
 
   @Post('/')
-  create(@Body() createBookDto: CreateBookDto) {
+  @UseInterceptors(FileInterceptor('imageLink', {storage: storage.local, fileFilter: fileFilter}))
+  create(
+    @Body() createBookDto: CreateBookDto,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    if(!file){
+      throw new BadRequestException("file is not an image")
+    }
+    console.log(file)
+    createBookDto.imageLink = file.filename
     return this.bookService.create(createBookDto);
   }
 
@@ -27,8 +49,8 @@ export class BookController {
     return this.bookService.update(param.id, updateBookDto);
   }
 
-  @Put('/:id')
-  delete(@Param() param: { id: string }, @Body() updateBookDto: UpdateBookDto) {
+  @Delete('/:id')
+  delete(@Param() param: { id: string }) {
     return this.bookService.delete(param.id);
   }
 }

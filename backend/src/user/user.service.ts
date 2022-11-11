@@ -32,11 +32,11 @@ export class UserService {
   }
 
   async findAll() {
-    return await this.userModel.find();
+    return await this.userModel.find().populate('book', 'imageLink');
   }
 
   async findOne(id: string) {
-    return await this.userModel.find({ _id: id }).populate('book', 'title');
+    return await this.userModel.find({ _id: id }).populate('book', 'imageLink')
   }
 
   async findOneByEmail(email: string): Promise<User> {

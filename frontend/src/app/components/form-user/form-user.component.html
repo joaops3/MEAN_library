@@ -1,0 +1,22 @@
+<div class="container flex justify-center items-center mt-12">
+  <form class="w-1/4" (ngSubmit)="handleSubmit()" [formGroup]="formGroup" #formDir="ngForm" >
+    <h1 class="text-center mb-10 ">
+      {{formTitle}}
+    </h1>
+    <div class="form-group mb-3">
+      <label for="email">E-mail</label>
+      <input id="email" type="e-mail" placeholder="E-mail" formControlName="email" required>
+      <div *ngIf="email.invalid && formDir.submitted">
+        <div *ngIf="email.errors?.['required']">O E-mail é obrigatorio</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input id="password" type="password" placeholder="Password" formControlName="password" required>
+      <div *ngIf="password.errors?.['required']">A senha é obrigatorio</div>
+    </div>
+    <div class="flex justify-end items-center mt-10">
+      <input type="submit" class="bg-pink-500 rounded-md hover:bg-pink-600 px-10 py-2 text-pink-50 cursor-pointer" value="Salvar"/>
+    </div>
+  </form>
+</div>

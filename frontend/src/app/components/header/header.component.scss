@@ -1,0 +1,28 @@
+@import "../../../styles/variables";
+
+%btn {
+    font-family: $font-text;
+    font-size: 1.1em;
+    padding: 5px 15px;
+    border-radius: 3px;
+}
+
+
+header{
+  
+}
+
+
+
+.btn-header{
+
+
+  &-sign{
+    @extend %btn;
+    border: 1px solid red
+  }
+
+   &-login{
+    @extend %btn
+  }
+}

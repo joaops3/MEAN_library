@@ -1,4 +1,5 @@
-import { Controller, Post, Body, Get, Param, Put, UseGuards, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Put, UseGuards, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { FileInterceptor } from "@nestjs/platform-express";
 import { JwtAuthGuard } from "../auth/jwt-auth.guard";
 import { BookService } from "../book/book.service";
 import { BuyBookDto } from "../book/dto/buy-book.dto";
@@ -35,8 +36,9 @@ export class UserController {
     return user;
   }
 
+ 
   @Post('/')
-  create(@Body() createUserDto: CreateUserDto) {
+  create(@Body() createUserDto: CreateUserDto,) {
     return this.userService.create(createUserDto);
   }
 
