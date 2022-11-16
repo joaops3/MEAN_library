@@ -12,6 +12,7 @@ import { FormProductComponent } from './components/form-product/form-product.com
 import { SigninComponent } from './pages/signin/signin.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
      ReactiveFormsModule,
-     HttpClientModule
+     HttpClientModule,
+     FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

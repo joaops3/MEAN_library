@@ -1,5 +1,9 @@
-<header class="w-full flex  items-center justify-center py-2">
-  <nav class="w-full container flex  items-center justify-between">
+<header class="w-full flex  items-center justify-center py-3 shadow-inner">
+  <nav class="w-full container flex  items-center justify-between ">
+   <label for="header-input" class="bg-slate-300 header-input">
+    <input name="header-input" id="header-input" class="bg-slate-300 text-gray-600 " type="text" placeholder="Pesquisar...">
+    <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+   </label>
     <div class="">
       <a routerLink="">
         <img src="../../../assets/images/pagcredilogo.png" />
@@ -19,3 +23,22 @@
     </ul>
   </nav>
 </header>
+<nav class="w-full flex  items-center justify-center bg-slate-300 py-3 shadow-lg under-nav">
+  <ul class="container  flex  items-center justify-center">
+    <li>
+      Classicos
+    </li>
+    <li>
+      Romances
+    </li>
+    <li>
+      Aventura
+    </li>
+    <li>
+      Terror
+    </li>
+    <li>
+      Idiomas
+    </li>
+  </ul>
+</nav>

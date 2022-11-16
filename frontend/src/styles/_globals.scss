@@ -1,12 +1,17 @@
+body{
+  @apply text-gray-50;
+}
+
 h1,h2,h3,h4,h5{
   font-family: $font-title;
   @apply text-gray-800;
 }
 
-p {
+p, li, a {
   font-family: $font-text;
    @apply text-gray-600;
 }
+
 
 
 .form-group{
