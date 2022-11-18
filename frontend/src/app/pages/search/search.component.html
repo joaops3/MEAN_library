@@ -1,0 +1,21 @@
+<section>
+  <div class="container ">
+    <div *ngIf="data.length > 0; else noData" class=" grid sm:grid-cols-1 md:grid-cols-3">
+      <div *ngFor="let item of data" class="mx-auto">
+        <div class="card px-5 py-5">
+          <a routerLink="/book/{{item._id}}">
+            <img src="{{baseURL}}/{{item.imageLink}}" alt="Capa do livro" class="rounded-md shadow-md">
+          </a>
+          <h2 class="text-base">{{item.title}}</h2>
+          <p><strong>{{item.author}}</strong></p>
+          <p>{{item.country}}</p>
+        </div>
+      </div>
+    </div>
+    <ng-template #noData>
+      <h1 class="text-center">
+        Nenhum livro encontrado!
+      </h1>
+    </ng-template>
+  </div>
+</section>

@@ -32,6 +32,13 @@ header{
       margin-bottom: -4px;
     }
   }
+   &-produto {
+    @extend %btn;
+    &:hover {
+      border-bottom: 4px solid $green;
+      margin-bottom: -4px;
+    }
+  }
 
 }
 

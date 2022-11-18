@@ -1,0 +1,20 @@
+.item-container{
+
+  fa-icon{
+    font-size: 1.7em;
+    @apply text-gray-500;
+
+
+    &:hover{
+       cursor: pointer;
+          @apply text-red-500;
+    }
+  }
+  .icons-container{
+    width: 500px;
+  }
+  img{
+    width: 500px;
+  }
+
+}

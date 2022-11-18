@@ -1,8 +1,8 @@
 <header class="w-full flex  items-center justify-center py-3 shadow-inner">
   <nav class="w-full container flex  items-center justify-between ">
    <label for="header-input" class="bg-slate-300 header-input">
-    <input name="header-input" id="header-input" class="bg-slate-300 text-gray-600 " type="text" placeholder="Pesquisar...">
-    <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+    <input name="header-input" id="header-input" class="bg-slate-300 text-gray-600 " type="text" placeholder="Pesquisar..." (keydown)="handleEnter($event)">
+    <fa-icon [icon]="faMagnifyingGlass" (click)="handleSearch()" class="cursor-pointer"></fa-icon>
    </label>
     <div class="">
       <a routerLink="">
@@ -10,6 +10,11 @@
       </a>
     </div>
     <ul class="flex gap-4 items-center justify-center">
+      <li *ngIf="isLogged">
+        <a routerLink="/book/new" class="btn-header-produto">
+          Cadastrar Produto
+        </a>
+      </li>
       <li>
         <a routerLink="/login" class="btn-header-login">
           login
@@ -23,7 +28,7 @@
     </ul>
   </nav>
 </header>
-<nav class="w-full flex  items-center justify-center bg-slate-300 py-3 shadow-lg under-nav">
+<nav class="w-full flex  items-center justify-center bg-slate-300 py-3 shadow-lg under-nav mb-5">
   <ul class="container  flex  items-center justify-center">
     <li>
       Classicos

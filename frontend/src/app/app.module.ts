@@ -10,9 +10,13 @@ import { LoginComponent } from './pages/login/login.component';
 import { FormUserComponent } from './components/form-user/form-user.component';
 import { FormProductComponent } from './components/form-product/form-product.component';
 import { SigninComponent } from './pages/signin/signin.component';
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProductComponent } from './pages/product/oneProduct/product.component';
+import { NewComponent } from './pages/product/new/new.component';
+import { EditComponent } from './pages/product/edit/edit.component';
+import { SearchComponent } from './pages/search/search.component';
 
 @NgModule({
   declarations: [
@@ -24,16 +28,19 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormUserComponent,
     FormProductComponent,
     SigninComponent,
-   
+    ProductComponent,
+    NewComponent,
+    EditComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-     ReactiveFormsModule,
-     HttpClientModule,
-     FontAwesomeModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    FontAwesomeModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

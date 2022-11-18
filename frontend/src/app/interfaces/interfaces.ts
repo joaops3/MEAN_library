@@ -15,9 +15,17 @@ export interface IBook {
 
   author: string;
 
-  country: string;
+  country?: string;
 
   imageLink: string;
 
   title: string;
+
+  language?: string
+
+  link?: string
+
+  pages?: number
+
+  year?:number
 }

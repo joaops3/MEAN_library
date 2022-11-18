@@ -29,14 +29,13 @@ export class BookController {
     if(!file){
       throw new BadRequestException("file is not an image")
     }
-    console.log(file)
     createBookDto.imageLink = file.filename
     return this.bookService.create(createBookDto);
   }
 
   @Get('/')
-  findAll(@Query() query: { name: string }) {
-    return this.bookService.findAll(query.name);
+  findAll(@Query() query: { page: number, limit: number }) {
+    return this.bookService.findAll(query.page, query.limit);
   }
 
   @Get('/:id')

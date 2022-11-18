@@ -7,14 +7,23 @@
       <label for="email">E-mail</label>
       <input id="email" type="e-mail" placeholder="E-mail" formControlName="email" required>
       <div *ngIf="email.invalid && formDir.submitted">
-        <div *ngIf="email.errors?.['required']">O E-mail é obrigatorio</div>
+        <div *ngIf="email.errors?.['required']" class="text-red-600 mt-2">O E-mail é obrigatorio</div>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group mb-3">
       <label for="password">Password</label>
       <input id="password" type="password" placeholder="Password" formControlName="password" required>
-      <div *ngIf="password.errors?.['required']">A senha é obrigatorio</div>
+        <div *ngIf="password.invalid && formDir.submitted">
+          <div *ngIf="password.errors?.['required']" class="text-red-600 mt-2">A senha é obrigatorio</div>
+        </div>
     </div>
+      <div class="form-group">
+        <label for="passwordConfirmation">Confirmação de senha</label>
+        <input id="passwordConfirmation" type="passwordConfirmation" placeholder="Password Confirmation" formControlName="passwordConfirmation" required>
+        <div *ngIf="passwordConfirmation.invalid && formDir.submitted">
+          <div *ngIf="passwordConfirmation.errors?.['required']" class="text-red-600 mt-2">Confirmar a senha é obrigatorio</div>
+        </div>
+      </div>
     <div class="flex justify-end items-center mt-10">
       <input type="submit" class="bg-pink-500 rounded-md hover:bg-pink-600 px-10 py-2 text-pink-50 cursor-pointer" value="Salvar"/>
     </div>

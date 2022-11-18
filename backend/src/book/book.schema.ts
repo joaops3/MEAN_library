@@ -21,6 +21,18 @@ export class Book {
   @Prop()
   title: string
 
+  @Prop()
+  language: string
+
+  @Prop()
+  link: string
+
+  @Prop()
+  pages: number
+
+  @Prop()
+  year: number
+
 }
 
 export const BookSchema = SchemaFactory.createForClass(Book)
