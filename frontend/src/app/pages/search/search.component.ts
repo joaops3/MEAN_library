@@ -19,11 +19,12 @@ export class SearchComponent implements OnInit {
   }
 
   async onLoad() {
-    const query = this.route.snapshot.paramMap.get("name")
+    let query: any
+    this.route.queryParams.subscribe((value)=> {query = value})
     if(!query) return
     this.bookService.findAll().subscribe((resp) => {
       this.data = resp.filter((item) => {
-       return item.title.toLowerCase().includes(query.toLowerCase())
+       return item.title.toLowerCase().includes(query.title.toLowerCase())
       })
     });
   }

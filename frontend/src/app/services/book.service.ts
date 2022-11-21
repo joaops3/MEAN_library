@@ -19,7 +19,7 @@ export class BookService {
   }
 
   findOne(id: string): Observable<IBook> {
-    return this.http.get<IBook>(this.URL+id);
+    return this.http.get<IBook>(`${this.URL}${id}`);
   }
 
   create(data: FormData): Observable<FormData> {
@@ -33,4 +33,5 @@ export class BookService {
   delete(id: string) {
     return this.http.delete(this.URL+id);
   }
+  
 }

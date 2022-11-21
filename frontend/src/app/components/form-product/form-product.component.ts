@@ -17,8 +17,8 @@ export class FormProductComponent implements OnInit {
   faTimes = faTimes
   constructor() {}
 
+  
   ngOnInit(): void {
-    console.log("data received",this.formData)
     this.formGroup = new FormGroup({
       title: new FormControl(this.formData?.title, [Validators.required]),
       author: new FormControl(this.formData?.author, [Validators.required]),
@@ -46,6 +46,7 @@ export class FormProductComponent implements OnInit {
   get imageLink() {
     return this.formGroup.get('imageLink')!;
   }
+
 
   handleChangeFile(event: any){
   

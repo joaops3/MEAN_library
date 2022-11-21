@@ -13,8 +13,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  handleSearch(e?: any) {
-    this.router.navigate([`/book/${e.target.value}`])
+  handleSearch(e?: Event) {
+    if(!e) return
+    const target = e.target as HTMLInputElement
+    this.router.navigate([`/search`], {queryParams: {title: target.value}})
   }
 
   handleEnter(e: any){

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {FormControl, FormGroup, FormGroupDirective, Validators} from "@angular/forms"
+import {FormControl, FormGroup, FormGroupDirective, Validators, ValidatorFn, AbstractControl, ValidationErrors} from "@angular/forms"
 import { IUser } from "src/app/interfaces/interfaces";
 @Component({
   selector: 'app-form-user',
@@ -13,11 +13,14 @@ export class FormUserComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.formGroup = new FormGroup({
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
-      passwordConfirmation: new FormControl('', [Validators.required]),
-    });
+    this.formGroup = new FormGroup(
+      {
+        email: new FormControl('', [Validators.required]),
+        password: new FormControl('', [Validators.required]),
+        passwordConfirmation: new FormControl('', [Validators.required]),
+      },
+     {validators: this.validateAreEqual}
+    );
   }
 
   get email() {
@@ -30,7 +33,13 @@ export class FormUserComponent implements OnInit {
     return this.formGroup.get('passwordConfirmation')!;
   }
 
+  public validateAreEqual(c: AbstractControl): { notSame: boolean } | null {
+    return c.value.password === c.value.passwordConfirmation ? null : { notSame: true };
+  }
+
   handleSubmit() {
+    if(this.formGroup.invalid) return
+    console.log("ativo")
     this.mySubmit.emit(this.formGroup.value);
   }
 }

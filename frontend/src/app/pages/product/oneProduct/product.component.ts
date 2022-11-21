@@ -24,12 +24,12 @@ export class ProductComponent implements OnInit {
 
 
   onLoad(){
-    if(!this.id) return
-    this.bookService.findOne(this.route.snapshot.paramMap.get("id")!).subscribe((data)=> {this.data = data})
+    console.log(this.route.snapshot.paramMap.get('id')!);
+    this.bookService.findOne(this.route.snapshot.paramMap.get("id")!).subscribe((data)=> { console.log(data);this.data = data})
   }
 
   delete(){
-      if (!this.id) return;
+   
     this.bookService.delete(this.route.snapshot.paramMap.get('id')!).subscribe(()=> {this.router.navigate(["/"])})
   }
 }

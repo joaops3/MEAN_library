@@ -34,12 +34,12 @@ export class BookController {
   }
 
   @Get('/')
-  findAll(@Query() query: { page: number, limit: number }) {
-    return this.bookService.findAll(query.page, query.limit);
+  findAll(@Query() query: { page: number, limit: number, title: string }) {
+    return this.bookService.findAll(query);
   }
 
   @Get('/:id')
-  findOne(@Param() param) {
+  findOne(@Param() param: {id: string}) {
     return this.bookService.findOne(param.id);
   }
 
@@ -52,4 +52,5 @@ export class BookController {
   delete(@Param() param: { id: string }) {
     return this.bookService.delete(param.id);
   }
+
 }

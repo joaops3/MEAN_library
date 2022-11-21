@@ -3,6 +3,7 @@ import {BookService } from 'src/app/services/book.service';
 import { environment } from "src/environments/environment";
 import { IUser, IBook } from '../../interfaces/interfaces';
 import {faEdit, faTimes} from "@fortawesome/free-solid-svg-icons"
+import { ActivatedRoute } from "@angular/router";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,9 +14,9 @@ export class HomeComponent implements OnInit {
   baseURL: string = environment.baseUrl
   faTimes = faTimes
   faEdit = faEdit
-  limit = 10
+  limit = 9
   page = 1
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.onLoad()
