@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { Observable } from "rxjs";
+import { AuthService } from "src/app/services/auth.service";
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,10 +10,13 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 })
 export class HeaderComponent implements OnInit {
   faMagnifyingGlass = faMagnifyingGlass;
-  isLogged: boolean = true;
-  constructor(private router: Router) {}
+  @Input() isLogged!: Observable<boolean>
 
-  ngOnInit(): void {}
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    
+  }
 
   handleSearch(e?: Event) {
     if(!e) return
@@ -23,5 +28,9 @@ export class HeaderComponent implements OnInit {
     if(e.key ==="Enter"){
        this.handleSearch(e)
     }
+  }
+
+  logout(){
+    this.authService.logout()
   }
 }

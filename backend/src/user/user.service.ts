@@ -15,10 +15,10 @@ export class UserService {
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     if (!createUserDto.email) {
-      throw new HttpException('nome obrigatorio', 422);
+      throw new HttpException('nome obrigatorio', 400);
     }
     if (!createUserDto.email) {
-      throw new HttpException('password obrigatorio', 422);
+      throw new HttpException('password obrigatorio', 400);
     }
 
     const createdUser = new this.userModel(createUserDto);
@@ -40,7 +40,7 @@ export class UserService {
   }
 
   async findOneByEmail(email: string): Promise<User> {
-    const user = await this.userModel.findOne({ email });
+    const user = await this.userModel.findOne({ email }).select({_id: true,email: true, password: true})
     if (!user) {
       throw new HttpException('error user not found', 404);
     }
@@ -49,7 +49,7 @@ export class UserService {
 
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     if (!updateUserDto.email) {
-      throw new HttpException('name required', 422);
+      throw new HttpException('name required', 400);
     }
     let user = await this.userModel.findById(id);
     if (!user) {

@@ -18,4 +18,9 @@ export class UserService {
   findOne(id: string): Observable<Response<IUser>> {
      return this.http.get<Response<IUser>>(this.URL + id);
   }
+
+  create(data: IUser){
+    return this.http.post<IUser>(this.URL, data)
+  }
+
 }

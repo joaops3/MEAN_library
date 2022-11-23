@@ -19,7 +19,7 @@ export class NewComponent implements OnInit {
     for(let [key, value] of Object.entries(data)){
       formData.append(key, value)
     }
-    this.bookService.create(formData).subscribe((resp)=> {console.log(resp)})
+    this.bookService.create(formData).subscribe((resp)=> {})
   }
 
 }

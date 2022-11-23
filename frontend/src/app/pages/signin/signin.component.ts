@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IUser } from "src/app/interfaces/interfaces";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
   selector: 'app-signin',
@@ -6,13 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
 
-  handleSubmit(data: any){
-    
+  handleSubmit(data: IUser){
+    this.userService.create(data).subscribe(resp => {})
   }
 }

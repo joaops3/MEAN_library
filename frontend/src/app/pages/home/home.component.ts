@@ -23,13 +23,22 @@ export class HomeComponent implements OnInit {
   }
 
   async onLoad() {
-    this.bookService.findAll(this.page, this.limit).subscribe((resp) => {this.data = resp})
+    this.bookService.findAll(this.page, this.limit).subscribe((resp) => {
+      let randomOrder = resp
+        .map((value) => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
+      this.data = randomOrder})
   }
 
   handlePagination(){
     this.page++
     this.bookService.findAll(this.page, this.limit).subscribe((resp) => {
-      this.data = this.data.concat(resp)
+       let randomOrder = resp
+         .map((value) => ({ value, sort: Math.random() }))
+         .sort((a, b) => a.sort - b.sort)
+         .map(({ value }) => value);
+      this.data = this.data.concat(randomOrder)
     });
   }
 }

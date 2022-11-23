@@ -6,16 +6,23 @@
         <fa-icon [icon]="faTimes" (click)="delete()"></fa-icon>
       </div>
       <img src="{{baseURL}}/{{data.imageLink}}" alt="Capa do livro" class="mb-2 rounded-md">
-      <div class="icons-container gap-y-5">
+      <div class="icons-container gap-y-5 mb-5">
         <h2>{{data.title}}</h2>
-        <p><strong>{{data.author}}</strong></p>
-        <p>{{data.country}}</p>
+        <p><strong>Autor: </strong> {{data.author}}</p>
+        <p><strong>Pais:</strong> {{data.country}}</p>
+        <p><strong>Idioma:</strong> {{data.language}}</p>
+        <p><strong>Ano:</strong> {{data.year}}</p>
       </div>
+        <div class="flex justify-center my-5">
+          <button  class="bg-gradient-to-b from-green-300 to-green-500 uppercase text-lg shadow-2xl hover:shadow-md ease-in duration-300 font-bold px-32 py-5 rounded-md">Comprar
+           </button>
+        </div>
     </div>
     <ng-template #noData>
       <h1>
         Nenhum livro encontrado!
       </h1>
     </ng-template>
+
   </div>
 </section>

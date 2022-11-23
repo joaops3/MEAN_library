@@ -1,16 +1,16 @@
 <div class="container flex justify-center items-center mt-12">
-  <form class="w-1/4">
+  <form class="w-1/4" (ngSubmit)="handleLogin()" [formGroup]="form" #formDir="ngForm">
     <h1 class="text-center mb-10 ">
     Login
     </h1>
     <div class="form-group mb-3">
       <label for="email">E-mail</label>
-      <input id="email" type="e-mail" placeholder="E-mail" required>
+      <input id="email" type="e-mail" formControlName="email" placeholder="E-mail" required>
     
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input id="password" type="password" placeholder="Password"  required>
+      <input id="password" type="password" formControlName="password" placeholder="Password"  required>
      
     </div>
     <div class="flex justify-end items-center mt-10">

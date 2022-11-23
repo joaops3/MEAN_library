@@ -8,7 +8,7 @@ export class AuthController {
   @Post('/login')
   async login(@Body() body: any) {
     if (!body.email || !body.password) {
-      throw new HttpException('email e senha obrigatorios', 422);
+      throw new HttpException('email e senha obrigatorios', 400);
     }
     const user = await this.authService.validate(body.email, body.password);
    

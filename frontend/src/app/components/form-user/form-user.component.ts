@@ -17,9 +17,8 @@ export class FormUserComponent implements OnInit {
       {
         email: new FormControl('', [Validators.required]),
         password: new FormControl('', [Validators.required]),
-        passwordConfirmation: new FormControl('', [Validators.required]),
+        passwordConfirmation: new FormControl('', [Validators.required, this.qualsTo("password")]),
       },
-     {validators: this.validateAreEqual}
     );
   }
 
@@ -33,13 +32,38 @@ export class FormUserComponent implements OnInit {
     return this.formGroup.get('passwordConfirmation')!;
   }
 
-  public validateAreEqual(c: AbstractControl): { notSame: boolean } | null {
-    return c.value.password === c.value.passwordConfirmation ? null : { notSame: true };
+  // public qualsTo(valueToCompare: string): ValidatorFn {
+  //     const validator = (c: AbstractControl) => {
+  //      return c.value.password === c.value.passwordConfirmation
+  //        ? null
+  //        : { notSame: true };
+
+  //    }
+  //    return validator
+  // }
+
+  public qualsTo(valueToCompare: string): ValidatorFn {
+    const validator = (formControl: AbstractControl) => {
+      if(!valueToCompare){
+        throw new Error("Error valor null")
+      }
+      if(!formControl.value){
+        return null
+      }
+      const field = (<FormGroup>formControl.root).get(valueToCompare)
+      if(!field){
+        throw new Error("Campo invalido")
+      }
+      if(field.value !== formControl.value){
+        return {notSame: true}
+      }
+      return null
+    }
+   return validator
   }
 
   handleSubmit() {
-    if(this.formGroup.invalid) return
-    console.log("ativo")
+    if (this.formGroup.invalid) return;
     this.mySubmit.emit(this.formGroup.value);
   }
 }

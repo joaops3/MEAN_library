@@ -38,8 +38,15 @@ header{
       border-bottom: 4px solid $green;
       margin-bottom: -4px;
     }
+    }
+    
+  &-logout {
+    @extend %btn;
+    &:hover {
+      border-bottom: 4px solid $blue;
+      margin-bottom: -4px;
+    }
   }
-
 }
 
 .header-input {

@@ -71,5 +71,6 @@ export class FormProductComponent implements OnInit {
       return;
     }
     this.onSubmit.emit(this.formGroup.value)
+    this.formGroup.reset()
   }
 }
