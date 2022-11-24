@@ -8,6 +8,11 @@ export interface IUser {
   email: string;
   password?: string;
   book?: string[];
+  role: IRoles[]
+}
+
+export enum IRoles {
+  "USER", "ADMIN", "SELLER"
 }
 
 export interface IBook {

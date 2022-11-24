@@ -1,7 +1,7 @@
 <section>
   <div class="container flex justify-center gap-5 ">
     <div *ngIf="data; else noData" class="item-container flex justify-center items-center flex-col justify-center">
-      <div class="flex justify-end gap-5 icons-container">
+      <div *ngIf="permitionToSee()" class="flex justify-end gap-5 icons-container">
         <a routerLink="/book/{{id}}/edit"><fa-icon [icon]="faEdit"></fa-icon></a>
         <fa-icon [icon]="faTimes" (click)="delete()"></fa-icon>
       </div>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { IUser } from "src/app/interfaces/interfaces";
 import { UserService } from "src/app/services/user.service";
 
@@ -8,13 +9,15 @@ import { UserService } from "src/app/services/user.service";
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
 
   handleSubmit(data: IUser){
-    this.userService.create(data).subscribe(resp => {})
+    this.userService.create(data).subscribe(resp => {
+      this.router.navigate(["/"])
+    })
   }
 }

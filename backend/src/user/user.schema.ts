@@ -19,6 +19,15 @@ export class User{
   @Prop({type: [{type: mongoose.Schema.Types.ObjectId, ref: "Book"}]})
   book: Book[]
 
+  @Prop({default: ["USER"]})
+  role: Role[]
+}
+
+
+enum Role {
+  "USER",
+  "SELLER",
+  "ADMIN"
 }
 
 export const UserSchema = SchemaFactory.createForClass(User)

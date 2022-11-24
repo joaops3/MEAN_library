@@ -40,7 +40,7 @@ export class UserService {
   }
 
   async findOneByEmail(email: string): Promise<User> {
-    const user = await this.userModel.findOne({ email }).select({_id: true,email: true, password: true})
+    const user = await this.userModel.findOne({ email }).select({_id: true,email: true, password: true, role: true})
     if (!user) {
       throw new HttpException('error user not found', 404);
     }

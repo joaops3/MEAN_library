@@ -17,6 +17,10 @@ import { ProductComponent } from './pages/product/oneProduct/product.component';
 import { NewComponent } from './pages/product/new/new.component';
 import { EditComponent } from './pages/product/edit/edit.component';
 import { SearchComponent } from './pages/search/search.component';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth.guard';
+
+//-----angular materials-----
 
 @NgModule({
   declarations: [
@@ -40,7 +44,7 @@ import { SearchComponent } from './pages/search/search.component';
     HttpClientModule,
     FontAwesomeModule,
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

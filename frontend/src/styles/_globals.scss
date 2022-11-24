@@ -7,6 +7,8 @@ body{
 }
 
 h1,h2,h3,h4,h5{
+   font-size: inherit;
+  font-weight: inherit;
   font-family: $font-title;
   @apply text-gray-800;
 }

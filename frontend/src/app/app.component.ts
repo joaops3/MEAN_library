@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IRoles } from "./interfaces/interfaces";
 import { AuthService } from "./services/auth.service";
 
 @Component({
@@ -8,8 +9,9 @@ import { AuthService } from "./services/auth.service";
 })
 export class AppComponent {
   title = 'BookHall';
-
+  roles!: IRoles[]
+  
   constructor(public authService: AuthService){
-
+    this.authService.role.subscribe(value => {this.roles = value})
   }
 }
