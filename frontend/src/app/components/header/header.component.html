@@ -1,7 +1,37 @@
+<nav class="offcanvas w-full min-w-full min-h-full z-10 bg-gray-900" [class.show]="offcanvas">
+ <div class="text-end px-5 py-5">
+  <fa-icon [icon]="faTimes" (click)="openOffCanvas()"></fa-icon>
+ </div>
+ <div class="">
+  <ul class="flex gap-4 items-center justify-center flex-col md:contents w-full">
+    <li *ngIf="isLogged |async; else LoginComps" class="text-center">
+      <a *ngIf="permitionToSee()" routerLink="/book/new" class="btn-header-produto">
+        Cadastrar Produto
+      </a>
+    </li>
+    <li *ngIf="isLogged |async" class="text-center">
+        <button class="btn-header-logout" (click)="logout()" >
+          Logout
+        </button>
+    </li>
+    <ng-template #LoginComps>
+      <li class="text-center">
+        <a routerLink="/login" class="btn-header-login">
+          login
+        </a>
+      </li>
+      <li class="text-center">
+        <a routerLink="/signin" class="btn-header-sign">
+          cadastrar
+        </a>
+      </li>
+    </ng-template>
+  </ul>
+ </div>
+</nav>
 <header class="w-full flex  items-center justify-center py-3 shadow-inner">
   <nav class="w-full container flex  items-center justify-between ">
-    <div class="w-1/3">
-      
+    <div class="w-2/3 sm:w-1/3">
       <label for="header-input" class="bg-slate-300 header-input">
         <input name="header-input" id="header-input" class="bg-slate-300 text-gray-600 w-full" type="text"
           placeholder="Pesquisar..." (keydown)="handleEnter($event)">
@@ -10,19 +40,21 @@
     </div>
     <div class="w-1/3 text-center hidden sm:contents">
       <a routerLink="">
-        <!-- <img src="../../../assets/images/pagcredilogo.png" /> -->
         <h1 class="font-bold">BOOK<span class="text-blue-700">HALL</span></h1>
       </a>
     </div>
-    <ul class="flex gap-4 items-center justify-center w-1/3">
-      <li *ngIf="isLogged |async; else LoginComps">
-        <a *ngIf="permitionToSee()" routerLink="/book/new" class="btn-header-produto">
-          Cadastrar Produto
-        </a>
-        <button class="btn-header-logout" (click)="logout()">
-          Logout
-        </button>
-      </li>
+    <ul class="flex gap-4 items-center justify-center w-1/3 header-links">
+     
+        <li *ngIf="isLogged |async; else LoginComps">
+            <a *ngIf="permitionToSee()" routerLink="/book/new" class="btn-header-produto">
+              Cadastrar Produto
+            </a>
+        </li>
+        <li *ngIf="isLogged |async;">
+          <button class="btn-header-logout" (click)="logout()">
+            Logout
+          </button>
+        </li>
       <ng-template #LoginComps>
         <li>
           <a routerLink="/login" class="btn-header-login">
@@ -35,6 +67,11 @@
           </a>
         </li>
       </ng-template>
+    </ul>
+    <ul class="hamburger-menu w-1/3 ml-5">
+      <li>
+         <fa-icon [icon]="faBars" (click)="openOffCanvas()"></fa-icon>
+      </li>
     </ul>
   </nav>
 </header>

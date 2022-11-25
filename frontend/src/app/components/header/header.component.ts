@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Observable } from "rxjs";
 import { IRoles } from "src/app/interfaces/interfaces";
 import { AuthService } from "src/app/services/auth.service";
@@ -11,6 +11,9 @@ import { AuthService } from "src/app/services/auth.service";
 })
 export class HeaderComponent implements OnInit {
   faMagnifyingGlass = faMagnifyingGlass;
+  faBars = faBars
+  faTimes = faTimes
+  offcanvas:boolean = false
   @Input() isLogged!: Observable<boolean>
   @Input() roles!: any[]
   constructor(private router: Router, private authService: AuthService) {}
@@ -42,4 +45,11 @@ export class HeaderComponent implements OnInit {
     }
     return false
   }
+
+
+  openOffCanvas(){
+    this.offcanvas = !this.offcanvas
+    console.log(this.offcanvas)
+  }
+ 
 }

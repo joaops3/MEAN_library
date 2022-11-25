@@ -19,6 +19,8 @@ import { EditComponent } from './pages/product/edit/edit.component';
 import { SearchComponent } from './pages/search/search.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 //-----angular materials-----
 
@@ -36,6 +38,7 @@ import { AuthGuard } from './guards/auth.guard';
     NewComponent,
     EditComponent,
     SearchComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,8 @@ import { AuthGuard } from './guards/auth.guard';
     ReactiveFormsModule,
     HttpClientModule,
     FontAwesomeModule,
+    BrowserAnimationsModule
+   
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent],
