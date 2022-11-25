@@ -44,7 +44,6 @@
       </a>
     </div>
     <ul class="flex gap-4 items-center justify-center w-1/3 header-links">
-     
         <li *ngIf="isLogged |async; else LoginComps">
             <a *ngIf="permitionToSee()" routerLink="/book/new" class="btn-header-produto">
               Cadastrar Produto

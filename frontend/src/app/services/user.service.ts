@@ -16,7 +16,7 @@ export class UserService {
   }
 
   findOne(id: string): Observable<Response<IUser>> {
-     return this.http.get<Response<IUser>>(this.URL + id);
+     return this.http.get<Response<IUser>>(this.URL +"/"+id);
   }
 
   create(data: IUser){

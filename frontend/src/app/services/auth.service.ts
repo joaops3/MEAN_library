@@ -31,7 +31,6 @@ export class AuthService {
         localStorage.setItem('user', JSON.stringify(resp));
         this._isLoggedIn$.next(true);
         this.route.navigate(['/']);
-        console.log("authservice",resp.role)
         this._role$.next(resp.role)
       });
   }

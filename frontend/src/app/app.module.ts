@@ -11,7 +11,7 @@ import { FormUserComponent } from './components/form-user/form-user.component';
 import { FormProductComponent } from './components/form-product/form-product.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductComponent } from './pages/product/oneProduct/product.component';
 import { NewComponent } from './pages/product/new/new.component';
@@ -20,6 +20,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TokenInterceptorInterceptor } from "./middlewares/token-interceptor.interceptor";
 
 
 //-----angular materials-----
@@ -49,7 +50,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule
    
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

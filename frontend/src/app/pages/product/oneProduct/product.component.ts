@@ -34,11 +34,11 @@ export class ProductComponent implements OnInit {
   }
 
   onLoad() {
-    console.log(this.route.snapshot.paramMap.get('id')!);
+    
     this.bookService
       .findOne(this.route.snapshot.paramMap.get('id')!)
       .subscribe((data) => {
-        console.log(data);
+  
         this.data = data;
       });
   }
