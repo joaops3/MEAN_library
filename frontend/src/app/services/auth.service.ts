@@ -23,7 +23,7 @@ export class AuthService {
 
   login(data: { email: string; password: string }) {
     return this.http
-      .post<{ id: string; role: IRoles; access_token: string }>(
+      .post<{ id: string; role: IRoles; access_token: string; refresh_token: string }>(
         environment.baseUrl + '/auth/login',
         data
       )

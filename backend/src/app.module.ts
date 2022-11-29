@@ -7,7 +7,7 @@ import { MulterModule } from '@nestjs/platform-express';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { ConfigModule } from '@nestjs/config';
 import { join } from 'path';
-import { RefreshTokenController } from './refresh-token/refresh-token.controller';
+
 import { RefreshTokenService } from './refresh-token/refresh-token.service';
 import { RefreshTokenModule } from './refresh-token/refresh-token.module';
 @Module({
@@ -23,7 +23,7 @@ import { RefreshTokenModule } from './refresh-token/refresh-token.module';
     MulterModule.register({ dest: './uploads' }),
     RefreshTokenModule,
   ],
-  controllers: [RefreshTokenController],
-  providers: [RefreshTokenService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
