@@ -6,7 +6,9 @@
 </div>
 
 <h3 align="center">Library BookHall</h3>
-<img  align="center" alt="home" width="600" src="backend/uploads/home.png" />
+<div>
+	<img   alt="home" width="600" src="backend/uploads/home.png" />
+</div>
 ---
 
 ## Sumário
