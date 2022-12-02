@@ -9,6 +9,19 @@
        cursor: pointer;
           @apply text-red-500;
     }
+
+   
+
+
+
+
+   
+  }
+
+  h2{
+    @media(max-width: 500px){
+      font-size: 20px;
+    }
   }
   .icons-container{
     width: 500px;

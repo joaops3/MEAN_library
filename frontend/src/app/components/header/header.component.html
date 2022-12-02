@@ -4,6 +4,11 @@
  </div>
  <div class="">
   <ul class="flex gap-4 items-center justify-center flex-col md:contents w-full">
+    <li class="text-center">
+      <a routerLink="/" class="btn-header-produto">
+        Home
+      </a>
+    </li>
     <li *ngIf="isLogged |async; else LoginComps" class="text-center">
       <a *ngIf="permitionToSee()" routerLink="/book/new" class="btn-header-produto">
         Cadastrar Produto

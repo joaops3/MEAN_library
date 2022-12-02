@@ -1,12 +1,12 @@
 <section>
   <div class="container flex justify-center gap-5 ">
-    <div *ngIf="data; else noData" class="item-container flex justify-center items-center flex-col justify-center">
+    <div *ngIf="data; else noData" class="item-container flex items-center flex-col justify-center">
       <div *ngIf="permitionToSee()" class="flex justify-end gap-5 icons-container">
         <a routerLink="/book/{{id}}/edit"><fa-icon [icon]="faEdit"></fa-icon></a>
         <fa-icon [icon]="faTimes" (click)="delete()"></fa-icon>
       </div>
       <img src="{{baseURL}}/{{data.imageLink}}" alt="Capa do livro" class="mb-2 rounded-md">
-      <div class="icons-container gap-y-5 mb-5">
+      <div class="icons-container gap-y-5 mb-5 md:ml-0 ml-52">
         <h2>{{data.title}}</h2>
         <p><strong>Autor: </strong> {{data.author}}</p>
         <p><strong>Pais:</strong> {{data.country}}</p>

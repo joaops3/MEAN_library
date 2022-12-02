@@ -6,7 +6,7 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('/login')
-  async login(@Body() body: any) {
+  async login(@Body() body: {email: string, password: string}) {
     if (!body.email || !body.password) {
       throw new HttpException('email e senha obrigatorios', 400);
     }
@@ -15,7 +15,7 @@ export class AuthController {
     return this.authService.generateToken(user);
   }
 
-  @Post("/refreshToken")
+  @Post("/refreshtoken")
   async generateToken(@Body() body: {refreshToken: string} ){
     return this.authService.generateNewToken(body.refreshToken)
   }
