@@ -6,10 +6,10 @@
 </div>
 
 <h3 align="center">Library BookHall</h3>
-<div>
-	<img   alt="home" width="600" src="backend/uploads/home.png" />
+
+<div align="center">
+	<img  alt="home" width="600" src="backend/uploads/home.png" />
 </div>
----
 
 ## Sumário
 - [Regras de Negócio](#backend)
@@ -85,7 +85,7 @@ As rotas podem ser testadas utilizando a interface gráfica do frontend. O proje
 - tailwind
 - font awesome
 
-## Funcionamento <a name = "funcionamento_front"></a>
+### Funcionamento <a name = "funcionamento_front"></a>
 
 **Estrutura do Projeto:**
 
