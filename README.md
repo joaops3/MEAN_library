@@ -35,7 +35,7 @@ Site de livraria.
 ### lib's utilizadas: <a name = "tecnologias_back"></a>
 
 - node 16.17.0
-- express
+- Nestjs 9.0.0
 - passport - jwt 
 - jsonWebToken
 - Multer
