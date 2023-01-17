@@ -33,7 +33,7 @@ export class CreateBookDto {
   @Length(1, 20)
   pages?: number;
 
-  @IsString()
+  @IsInt()
   @Length(1, 5)
   year?: number;
 }
