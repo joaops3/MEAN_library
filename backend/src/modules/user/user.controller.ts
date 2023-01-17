@@ -1,12 +1,22 @@
-import { Controller, Post, Body, Get, Param, Put, UseGuards, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
-import { FileInterceptor } from "@nestjs/platform-express";
-import { JwtAuthGuard } from "../auth/jwt-auth.guard";
-import { BookService } from "../book/book.service";
-import { BuyBookDto } from "../book/dto/buy-book.dto";
-import { UserService } from "./user.service";
-import { CreateUserDto } from "./userDto/create-user.dto";
-import { UpdateUserDto } from "./userDto/update-user.dto";
-
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Put,
+  UseGuards,
+  Delete,
+  UseInterceptors,
+  UploadedFile,
+} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { JwtAuthGuard } from '../../modules/auth/jwt-auth.guard';
+import { BookService } from '../book/book.service';
+import { BuyBookDto } from '../book/dto/buy-book.dto';
+import { UserService } from './user.service';
+import { CreateUserDto } from './userDto/create-user.dto';
+import { UpdateUserDto } from './userDto/update-user.dto';
 
 @Controller('user')
 export class UserController {
@@ -30,15 +40,11 @@ export class UserController {
   @Put('/:id')
   update(@Param() param: { id: string }, @Body() updateUserDto: UpdateUserDto) {
     const user = this.userService.update(param.id, updateUserDto);
-    if (!user) {
-      return { error: 'user not found' };
-    }
     return user;
   }
 
- 
   @Post('/')
-  create(@Body() createUserDto: CreateUserDto,) {
+  create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
 
@@ -56,7 +62,7 @@ export class UserController {
   @Delete(':id/delete')
   async removeBook(
     @Param() param: { id: string },
-    @Body() bookId: {id: string},
+    @Body() bookId: { id: string },
   ) {
     return this.userService.removeBook(param.id, bookId.id);
   }

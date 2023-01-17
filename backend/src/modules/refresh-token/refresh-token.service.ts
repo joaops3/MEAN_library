@@ -4,7 +4,7 @@ import mongoose, {Model} from "mongoose"
 import { RefreshToken, RefreshTokenDocument } from "./refresh-token.schema";
 import { JwtService } from "@nestjs/jwt";
 import { v4 } from "uuid";
-import { UserEntity } from "src/user/entities/User.entity";
+import { UserEntity } from "src/modules/user/entities/User.entity";
 import * as dayjs from "dayjs"
 @Injectable()
 export class RefreshTokenService {

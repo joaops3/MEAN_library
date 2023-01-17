@@ -1,5 +1,5 @@
-import { Book } from "src/book/book.schema"
-import { Role } from "../user.schema"
+import { Book } from "src/modules/book/book.schema"
+import { Role } from '../../../types';
 
 export class UserEntity {
   _id: string

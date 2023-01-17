@@ -7,10 +7,11 @@ import { UpdateBookDto } from "./dto/update-book.dto";
 import {v4} from "uuid"
 import { BuyBookDto } from "./dto/buy-book.dto";
 import { ObjectId } from "mongoose";
+import { BookRepository } from "./repositories/book.repository";
 
 @Injectable()
 export class BookService {
-  constructor(@InjectModel(Book.name) private bookModel: Model<BookDocument>) {}
+  constructor(private bookRepository: BookRepository) {}
 
   async create(createBookDto: CreateBookDto) {
     if (!createBookDto.title) {
@@ -22,51 +23,52 @@ export class BookService {
     if (!createBookDto.imageLink) {
       throw new HttpException('missing image link', 400);
     }
-    const book = new this.bookModel(createBookDto);
-    book._id = new mongoose.Types.ObjectId();
-    await book.save();
+    const book = await this.bookRepository.create(createBookDto)
+    if(!book){
+      throw new HttpException("bad Request", 400)
+    }
     return book;
   }
 
   async findAll({page, limit, title}: {page?: number, limit?: number, title?: string}) {
-    if (!page && !limit) {
-      return await this.bookModel.find();
-    }
-    let offset = (page - 1) * limit;
-    return await this.bookModel.find().skip(offset).limit(limit);
+    const books = await this.bookRepository.findAll()
+    return books
   }
 
   async findOne(id: string) {
-    const book = await this.bookModel.findOne({ _id: id });
+    const book = await this.bookRepository.findOneById(id);
     if (!book) {
       throw new HttpException('Book not found', 404);
     }
     return book;
   }
 
-  async update(id: string, updateBookDto: UpdateBookDto): Promise<Book> {
+  async update(id: string, updateBookDto: UpdateBookDto): Promise<{message: string}> {
     if (!updateBookDto) {
       throw new HttpException('No data send', 400);
     }
-    let book = await this.bookModel.findOne({ where: { _id: id } });
+    let book = await this.bookRepository.findOneById(id);
     if (!book) {
-      return;
+      throw new HttpException("book not found", 404)
     }
-    await this.bookModel.updateOne({ where: { _id: id } }, updateBookDto);
-    return;
+    let updated = await this.bookRepository.update(book, updateBookDto)
+    if(!updated){
+      throw new HttpException("erro update", 404)
+    }
+    return {message: "updated"}
   }
 
   async delete(id: string) {
     if (!id) {
       throw new HttpException('id is required', 400);
     }
-    return this.bookModel.findByIdAndDelete(id);
+    const book = this.bookRepository.delete(id)
   }
 
   async findToBuy(books: BuyBookDto[]): Promise<Book[]> {
     let booksList = [];
     books.forEach(async (book: BuyBookDto) => {
-      let foundBook = await this.bookModel.findById(book._id);
+      let foundBook = await this.bookRepository.findOneById(book._id);
       if (foundBook) {
         booksList.push(foundBook);
       }

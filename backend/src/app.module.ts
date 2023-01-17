@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserModule } from './user/user.module';
-import { BookModule } from './book/book.module';
-import { AuthModule } from './auth/auth.module';
+import { UserModule } from './modules/user/user.module';
+import { BookModule } from './modules/book/book.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { ConfigModule } from '@nestjs/config';
 import { join } from 'path';
 
-import { RefreshTokenService } from './refresh-token/refresh-token.service';
-import { RefreshTokenModule } from './refresh-token/refresh-token.module';
+import { RefreshTokenService } from './modules/refresh-token/refresh-token.service';
+import { RefreshTokenModule } from './modules/refresh-token/refresh-token.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
